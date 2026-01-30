@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошелек - RAYGAME</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wallet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/"><i class="fas fa-gamepad"></i> RAYGAME</a>
+        </div>
+        <div class="wallet-nav">
+            <a href="/casino"><i class="fas fa-dice"></i> Игры</a>
+            <a href="/wallet" class="active"><i class="fas fa-wallet"></i> Кошелек</a>
+            <a href="/profile"><i class="fas fa-user"></i> Профиль</a>
+        </div>
+    </nav>
+
+    <main class="wallet-main">
+        <div class="wallet-header">
+            <h1><i class="fas fa-wallet"></i> Мой кошелек</h1>
+            <div class="total-balance">
+                <h3>Общий баланс</h3>
+                <div class="balance-amount">$<span id="totalBalance">0.00</span></div>
+            </div>
+        </div>
+
+        <!-- Быстрые действия -->
+        <div class="quick-actions">
+            <button class="action-btn deposit-btn" onclick="showDeposit()">
+                <i class="fas fa-plus"></i>
+                <span>Пополнить</span>
+            </button>
+            <button class="action-btn withdraw-btn" onclick="showWithdraw()">
+                <i class="fas fa-minus"></i>
+                <span>Вывести</span>
+            </button>
+            <button class="action-btn history-btn" onclick="showHistory()">
+                <i class="fas fa-history"></i>
+                <span>История</span>
+            </button>
+            <button class="action-btn transfer-btn" onclick="showTransfer()">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Перевод</span>
+            </button>
+        </div>
+
+        <!-- Методы оплаты -->
+        <div class="payment-methods">
+            <h2><i class="fas fa-credit-card"></i> Методы оплаты</h2>
+            <div class="methods-grid">
+                <div class="method-card crypto">
+                    <i class="fab fa-bitcoin"></i>
+                    <h3>Криптовалюта</h3>
+                    <p>BTC, ETH, USDT</p>
+                    <button onclick="depositCrypto()">Пополнить</button>
+                </div>
+                
+                <div class="method-card card">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Банковская карта</h3>
+                    <p>Visa, Mastercard</p>
+                    <button onclick="depositCard()">Пополнить</button>
+                </div>
+                
+                <div class="method-card qiwi">
+                    <i class="fas fa-wallet"></i>
+                    <h3>QIWI</h3>
+                    <p>Кошелек QIWI</p>
+                    <button onclick="depositQiwi()">Пополнить</button>
+                </div>
+                
+                <div class="method-card yoomoney">
+                    <i class="fas fa-ruble-sign"></i>
+                    <h3>ЮMoney</h3>
+                    <p>Быстро и безопасно</p>
+                    <button onclick="depositYoo()">Пополнить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- История транзакций -->
+        <div class="transactions-section">
+            <h2><i class="fas fa-exchange-alt"></i> Последние транзакции</h2>
+            <div class="transactions-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Тип</th>
+                            <th>Сумма</th>
+                            <th>Статус</th>
+                            <th>Детали</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <tr>
+                            <td>20.01.2024</td>
+                            <td><span class="type deposit">Депозит</span></td>
+                            <td class="amount plus">+$100.00</td>
+                            <td><span class="status completed">Завершено</span></td>
+                            <td>Карта **** 1234</td>
+                        </tr>
+                        <tr>
+                            <td>19.01.2024</td>
+                            <td><span class="type withdraw">Вывод</span></td>
+                            <td class="amount minus">-$50.00</td>
+                            <td><span class="status pending">В обработке</span></td>
+                            <td>BTC кошелек</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Статистика -->
+        <div class="wallet-stats">
+            <div class="stat-card">
+                <h3>Общий депозит</h3>
+                <div class="stat-value">$<span id="totalDeposit">0.00</span></div>
+            </div>
+            <div class="stat-card">
+                <h3>Общий вывод</h3>
+                <div class="stat-value">$<span id="totalWithdraw">0.00</span></div>
+            </div>
+            <div class="stat-card">
+                <h3>Чистая прибыль</h3>
+                <div class="stat-value">$<span id="netProfit">0.00</span></div>
+            </div>
+            <div class="stat-card">
+                <h3>Всего игр</h3>
+                <div class="stat-value"><span id="totalGames">0</span></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальные окна -->
+    <div id="depositModal" class="modal wallet-modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal('depositModal')">&times;</span>
+            <h2><i class="fas fa-coins"></i> Пополнение баланса</h2>
+            <!-- Контент загружается через JS -->
+        </div>
+    </div>
+
+    <div id="withdrawModal" class="modal wallet-modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal('withdrawModal')">&times;</span>
+            <h2><i class="fas fa-money-bill-wave"></i> Вывод средств</h2>
+            <!-- Контент загружается через JS -->
+        </div>
+    </div>
+
+    <script src="js/wallet.js"></script>
+</body>
+</html>

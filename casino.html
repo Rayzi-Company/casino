@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игровой зал - RAYGAME</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/casino.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/"><i class="fas fa-gamepad"></i> RAYGAME</a>
+        </div>
+        <div class="casino-balance">
+            <div class="balance-info">
+                <i class="fas fa-wallet"></i>
+                <span>Баланс: $<span id="casinoBalance">0.00</span></span>
+            </div>
+            <button class="btn-deposit" onclick="showDeposit()">
+                <i class="fas fa-plus"></i> Пополнить
+            </button>
+            <button class="btn-back" onclick="window.location.href='/'">
+                <i class="fas fa-home"></i> На главную
+            </button>
+        </div>
+    </nav>
+
+    <main class="casino-main">
+        <div class="casino-header">
+            <h1><i class="fas fa-dice"></i> Игровой зал</h1>
+            <p>Выберите игру и начинайте выигрывать!</p>
+        </div>
+
+        <!-- Быстрые игры -->
+        <div class="quick-games">
+            <h2><i class="fas fa-bolt"></i> Быстрые игры</h2>
+            <div class="quick-game-cards">
+                <div class="quick-card" onclick="playQuickGame('slots')">
+                    <div class="quick-icon">
+                        <i class="fas fa-slot-machine"></i>
+                    </div>
+                    <h3>Слоты</h3>
+                    <p>Быстрая игра</p>
+                    <div class="quick-bet">$1 - $100</div>
+                </div>
+                
+                <div class="quick-card" onclick="playQuickGame('dice')">
+                    <div class="quick-icon">
+                        <i class="fas fa-dice"></i>
+                    </div>
+                    <h3>Кости</h3>
+                    <p>Угадай число</p>
+                    <div class="quick-bet">$0.5 - $50</div>
+                </div>
+                
+                <div class="quick-card" onclick="playQuickGame('crash')">
+                    <div class="quick-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Crash</h3>
+                    <p>До краша</p>
+                    <div class="quick-bet">$1 - $500</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Все игры -->
+        <div class="all-games">
+            <h2><i class="fas fa-gamepad"></i> Все игры</h2>
+            <div class="games-filter">
+                <button class="filter-btn active" onclick="filterGames('all')">Все</button>
+                <button class="filter-btn" onclick="filterGames('slots')">Слоты</button>
+                <button class="filter-btn" onclick="filterGames('table')">Настольные</button>
+                <button class="filter-btn" onclick="filterGames('live')">Live</button>
+            </div>
+            
+            <div class="games-grid" id="allGames">
+                <!-- Игры загружаются через JS -->
+            </div>
+        </div>
+
+        <!-- История игр -->
+        <div class="game-history">
+            <h2><i class="fas fa-history"></i> История игр</h2>
+            <div class="history-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Игра</th>
+                            <th>Ставка</th>
+                            <th>Выигрыш</th>
+                            <th>Результат</th>
+                            <th>Время</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                        <!-- История загружается через JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Игровое окно -->
+    <div id="gameWindow" class="game-window">
+        <div class="game-container">
+            <div class="game-header">
+                <h2 id="gameTitle">Игра</h2>
+                <button class="close-game" onclick="closeGame()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="game-content" id="gameContent">
+                <!-- Контент игры -->
+            </div>
+            <div class="game-controls">
+                <div class="bet-controls">
+                    <input type="number" id="betAmount" value="10" min="1" max="1000">
+                    <button onclick="placeBet()" class="btn-bet">Сделать ставку</button>
+                </div>
+                <div class="auto-play">
+                    <label>
+                        <input type="checkbox" id="autoPlay"> Авто-игра
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/casino.js"></script>
+</body>
+</html>

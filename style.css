@@ -1,0 +1,9 @@
+body { font-family: Arial; background: #0a0a1a; color: white; margin: 0; }
+.sidebar { width: 200px; background: #1a1a2e; height: 100vh; float: left; padding: 20px; }
+.main { margin-left: 220px; padding: 20px; }
+.nav-item { padding: 10px; cursor: pointer; border-bottom: 1px solid #333; }
+.nav-item:hover { background: #0066ff; }
+.stat-card { background: #1a1a2e; padding: 15px; margin: 10px; border-radius: 8px; display: inline-block; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px; border: 1px solid #333; text-align: left; }
+input, select { padding: 8px; margin: 5px; background: #2a2a3e; color: white; border: 1px solid #0066ff; }

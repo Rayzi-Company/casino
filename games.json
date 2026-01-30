@@ -1,0 +1,46 @@
+{
+    "games": {
+        "slots": {
+            "enabled": true,
+            "min_bet": 0.10,
+            "max_bet": 1000,
+            "rtp": 96.5,
+            "jackpot_enabled": true,
+            "jackpot_min": 10000
+        },
+        "dice": {
+            "enabled": true,
+            "min_bet": 0.50,
+            "max_bet": 500,
+            "rtp": 97.0
+        },
+        "crash": {
+            "enabled": true,
+            "min_bet": 1.00,
+            "max_bet": 10000,
+            "rtp": 95.0,
+            "max_multiplier": 1000
+        },
+        "blackjack": {
+            "enabled": true,
+            "min_bet": 5.00,
+            "max_bet": 5000,
+            "rtp": 99.5,
+            "decks": 6
+        }
+    },
+    "bonuses": {
+        "welcome_bonus": {
+            "enabled": true,
+            "percent": 100,
+            "max_amount": 100,
+            "wagering": 30
+        },
+        "deposit_bonus": {
+            "enabled": true,
+            "percent": 50,
+            "max_amount": 500,
+            "wagering": 35
+        }
+    }
+}
